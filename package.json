@@ -10,9 +10,12 @@
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",
+    "cpf-cnpj-validator": "^1.0.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "mongoose": "^6.2.9"
+    "libphonenumber-js": "^1.9.50",
+    "mongoose": "^6.2.9",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "nodemon": "^2.0.15",
