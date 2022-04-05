@@ -2,6 +2,8 @@ import * as Yup from 'yup';
 import parsePhoneNumber  from 'libphonenumber-js';
 import { cpf,cnpj } from 'cpf-cnpj-validator';
 
+import Cart from '../Models/Cart';
+
 class TransactionsController { 
     async create(req, res) {
         try {
@@ -72,9 +74,12 @@ class TransactionsController {
                 ( paymentType, schema ) =>  paymentType === "credit_card" ? schema.required().max(3) : schema),
             });
 
-            if (!(await schema.isValid(req.body))) {
-                return res.status(400).json({error: "Error on validate schema."});
-            }
+            if (!(await schema.isValid(req.body))) res.status(400).json({error: "Error on validate schema."});
+
+            const cart = Cart.findOne({ code: cartCode });
+
+            if (!cart)  res.status(400).json({error: "Error on validate schema."});
+            
 
             return res.status(200).json();
 
